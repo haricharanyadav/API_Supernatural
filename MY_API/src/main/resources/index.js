@@ -13,6 +13,7 @@ function getImages() {
         type: 'get',
         cache: false,
         success: function(data){
+            window.localStorage.setItem("images", JSON.stringify(data.img));
             $(data.img).each(function(index,value){
                 createImages(index,value);
             });
@@ -22,19 +23,23 @@ function getImages() {
 
 function getEpisodes(season) {
     $.ajax({
-        url: 'http://localhost:8080/'+season,
+        url: 'http://localhost:8080/season/'+season,
         dataType: 'json',
         type: 'get',
         cache: false,
         success: function(data){
-            $(data.img).each(function(index,value){
+            window.localStorage.setItem("episodes", JSON.stringify(data.episodes));
+            $(data.episodes).each(function(index,value){
                 createEpisodes(season,index,value);
-            });
+           });
         }
     });
 }
 
 function createEpisodes(season,index,arrayElem) {
+    var images = window.localStorage.getItem('images').split(",");
+	document.getElementById("seasonImage").setAttribute("src", images[(season.substring(6,)-1)].replace(/\"/g,"").replace("[","").replace("]",""));
+	document.getElementById("seasonName").innerHTML = "Season "+(season.substring(6,))+" - Episode List:";
     var div = document.createElement("DIV");
     div.innerHTML = "<a class='w3-button' href='http://localhost:8080/"+season+"/episode"+index+"'> <b>"+arrayElem+"</b></a>";
     document.getElementById("episodes").appendChild(div);

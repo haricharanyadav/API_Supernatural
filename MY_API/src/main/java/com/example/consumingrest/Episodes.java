@@ -10,7 +10,7 @@ public class Episodes {
         this.episodes = episodes;
     }
 
-    public List<String> getImg() {
+    public List<String> getEpisodes() {
         return episodes;
     }
 }

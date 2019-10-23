@@ -17,11 +17,11 @@
 </nav>
 
 <section class="w3-container w3-center w3-content" style="max-width:600px" id='name'>
-    <img class="mySlides" src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Supernatural_Season_1.jpg/220px-Supernatural_Season_1.jpg">
+    <img class="mySlides" id='seasonImage'>
   <h2 class="w3-wide">Supernatural</h2>
   <p class="w3-opacity"><i>American television series</i></p>
   <p class="w3-justify">Brothers Dean and Sam follow in their father's footsteps and set out to eliminate monsters, demons and other supernatural entities that exist on Earth.</p>
-  <p class="w3-justify"><b>Season 1 - Episode List:</b></p>                 
+  <p class="w3-justify" id='seasonName'><b></b></p>                 
 </section>
 
 <section class="w3-container w3-center w3-content" id='episodes'>
@@ -38,7 +38,6 @@
 </footer>
 
 <script>
-console.log(getCookie("season"));
    window.onload = getEpisodes(getCookie("season"));
 </script>
 

@@ -75,7 +75,7 @@ public class Controller {
 
     @RequestMapping("/seasons")
     public String seasons(HttpServletResponse response, @RequestParam(value="supernatural", defaultValue="season1") String name) {
-    	Cookie cookie = new Cookie("season", "season1");
+    	Cookie cookie = new Cookie("season", name);
     	cookie.setMaxAge(60);
         response.addCookie(cookie);
         StringBuilder contentBuilder = new StringBuilder();
@@ -98,7 +98,7 @@ public class Controller {
         return new Images(new Constants().img);
     }
 
-    @RequestMapping("/seasons/{season}")
+    @RequestMapping("/season/{season}")
     public Episodes season(@PathVariable("season") String season, HttpServletResponse  response) {
     	 response.addHeader("Access-Control-Allow-Origin", "*");
         return new Episodes(new Constants().seasons(season));

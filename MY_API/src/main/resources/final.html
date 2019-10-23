@@ -3,9 +3,9 @@
   <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://localhost:8080/index.css">
+<link rel="stylesheet" href="/index.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<script src="http://localhost:8080/index.js" type="text/javascript"></script>
+<script src="/index.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
@@ -17,13 +17,15 @@
 </nav>
 
 <section class="w3-container w3-center w3-content" style="max-width:600px" id='name'>
-    <img class="mySlides" id='seasonImage'>
   <h2 class="w3-wide">Supernatural</h2>
-  <p class="w3-opacity"><i>American television series</i></p>
-  <p class="w3-justify">Brothers Dean and Sam follow in their father's footsteps and set out to eliminate monsters, demons and other supernatural entities that exist on Earth.</p>
-  <p class="w3-justify" id='seasonName'><b></b></p>                 
+  <p class="w3-opacity" id="episodeName"><i></i></p>
+  <p class="w3-justify"><span class="w3-justify w3-button"><a id="previous"><b>Previous Episode</b></a></span>
+  <span class="w3-justify w3-right w3-button"><a id="next"><b>Next Episode</b></a></span></p>
 </section>
-
+<div class="w3-center"><video  width="75%" controls>
+        <source id="video"src="images/001 Introduction.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video></div>
 <section class="w3-container w3-center w3-content" id='episodes'>
 </section>
 
@@ -37,10 +39,11 @@
   </p>
 </footer>
 
-<script>
-   window.onload = getEpisodes(getCookie("season"));
-</script>
+<script> 
+    window.onload = getVideo(getCookie("season"));
+  </script>
 
 
 </body>
 </html>
+
