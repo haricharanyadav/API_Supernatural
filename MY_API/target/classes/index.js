@@ -41,7 +41,7 @@ function createEpisodes(season,index,arrayElem) {
 	document.getElementById("seasonImage").setAttribute("src", images[(season.substring(6,)-1)].replace(/\"/g,"").replace("[","").replace("]",""));
 	document.getElementById("seasonName").innerHTML = "Season "+(season.substring(6,))+" - Episode List:";
     var div = document.createElement("DIV");
-    div.innerHTML = "<a class='w3-button' href='http://localhost:8080/"+season+"/episode"+index+"'> <b>"+arrayElem+"</b></a>";
+    div.innerHTML = "<a class='w3-button' href='http://localhost:8080/episodes?supernatural="+season+"&episode="+index+"'> <b>"+arrayElem+"</b></a>";
     document.getElementById("episodes").appendChild(div);
 }
 
@@ -59,4 +59,19 @@ function getCookie(cname) {
       }
     }
     return "";
-  }
+}
+
+function getEpisode(season, episode){
+	$.ajax({
+        url: 'http://localhost:8080/'+season+'/'+episode,
+        dataType: 'json',
+        type: 'get',
+        cache: false,
+        success: function(data){
+            window.localStorage.setItem("episodes", JSON.stringify(data.episodes));
+            $(data.episodes).each(function(index,value){
+                createEpisodes(season,index,value);
+           });
+        }
+    });
+}
