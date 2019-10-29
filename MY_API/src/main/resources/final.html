@@ -23,8 +23,7 @@
   <span class="w3-justify w3-right w3-button"><a id="next"><b>Next Episode</b></a></span></p>
 </section>
 <div class="w3-center"><video  width="75%" controls>
-        <source id="video"src="images/001 Introduction.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
+        <source id="video" type='video/mp4' >
       </video></div>
 <section class="w3-container w3-center w3-content" id='episodes'>
 </section>
@@ -40,11 +39,8 @@
 </footer>
 
 <script>
-
-    window.onload = getVideo(getCookie("season"), getCookie("episode"));
+    window.onload = setThings(getCookie("season"), getCookie("episode"));
   </script>
-
-
 </body>
 </html>
 

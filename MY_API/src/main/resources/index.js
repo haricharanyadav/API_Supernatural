@@ -41,7 +41,7 @@ function createEpisodes(season,index,arrayElem) {
 	document.getElementById("seasonImage").setAttribute("src", images[(season.substring(6,)-1)].replace(/\"/g,"").replace("[","").replace("]",""));
 	document.getElementById("seasonName").innerHTML = "Season "+(season.substring(6,))+" - Episode List:";
     var div = document.createElement("DIV");
-    div.innerHTML = "<a class='w3-button' href='http://localhost:8080/episodes?supernatural="+season+"&episode="+index+"'> <b>"+arrayElem+"</b></a>";
+    div.innerHTML = "<a class='w3-button' href='http://localhost:8080/episodes?supernatural="+season+"&episode="+(index+1)+"'> <b>"+arrayElem+"</b></a>";
     document.getElementById("episodes").appendChild(div);
 }
 
@@ -74,4 +74,18 @@ function getEpisode(season, episode){
            });
         }
     });
+}
+
+function setThings(season,episode){
+	var episodes = window.localStorage.getItem('episodes').split(",");
+	document.getElementById("episodeName").innerHTML = episodes[(season.substring(6,)-1)].replace(/\"/g,"").replace("[","").replace("]","");
+	document.getElementById("video").setAttribute("src", "http://localhost:8080/"+season+"/episode"+episode);
+	if(episode == 1)
+	document.getElementById("previous").disabled = true;
+    else
+    document.getElementById("previous").setAttribute("href", "http://localhost:8080/episodes?supernatural="+season+"&episode="+(episode-1));
+    if(episode == episodes.length)
+    document.getElementById("next").disabled = true;
+    else
+    document.getElementById("next").setAttribute("href", "http://localhost:8080/episodes?supernatural="+season+"&episode="+(Number(episode)+1));
 }
